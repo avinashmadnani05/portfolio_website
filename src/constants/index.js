@@ -269,7 +269,7 @@ const projects = [
       },
     ],
     image: carrent,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://quantum-simulation-nu.vercel.app/",
   },
   {
     name: "Course Connector",
@@ -290,7 +290,7 @@ const projects = [
       },
     ],
     image: shopify,
-    source_code_link: "github.com",
+    source_code_link: "https://courserecomender-avinashmadnani05s-projects.vercel.app/",
     
 
   },
@@ -313,7 +313,7 @@ const projects = [
       },
     ],
     image: jobit,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://gfg-ghrcemn.vercel.app/",
   },
 ];
 

@@ -29,7 +29,7 @@ const ProjectCard = ({
         <div className='relative w-full h-[230px]'>
           <img
             src={image}
-            alt='project_image'
+            alt='project_image' 
             className='w-full h-full object-cover rounded-2xl'
           />
 
@@ -79,6 +79,7 @@ const Works = () => {
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
+      
       >
         The following projects showcase my skills and experience through 
         real-world applications of my work. Each project is briefly described, 
