@@ -1,20 +1,30 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf", true);
 
-  if (!scene) {
-    console.error("GLTF Model not loaded!");
+  // Debugging: Log the scene structure to find the geometry
+  console.log("GLTF Model Loaded:", scene);
+
+  let foundGeometry = null;
+  scene.traverse((child) => {
+    if (child.isMesh && child.geometry) {
+      foundGeometry = child.geometry;
+    }
+  });
+
+  if (!foundGeometry) {
+    console.error("❌ No geometry found in the GLTF model!");
     return null;
   }
 
-  // Debugging NaN issue
-  console.log("GLTF Model Loaded:", scene);
-  console.log("Positions:", scene?.children[0]?.geometry?.attributes?.position);
+  console.log("✅ Geometry Found:", foundGeometry);
+  console.log("✅ Positions Attribute:", foundGeometry.attributes.position);
 
   return (
     <mesh>
@@ -24,14 +34,14 @@ const Computers = ({ isMobile }) => {
         angle={0.12}
         penumbra={1}
         intensity={1}
-        castShadow={!isMobile} // Disable shadows on mobile
+        castShadow={!isMobile} // Disable shadows on mobile to prevent issues
         shadow-mapSize={1024}
       />
       <pointLight intensity={1} />
       <primitive
         object={scene}
-        scale={isMobile ? 1 : 0.75} // Adjusted for mobile
-        position={isMobile ? [0, -2, -2] : [0, -3.25, -1.5]} // Adjusted for mobile
+        scale={isMobile ? 1 : 0.75} // Adjust scale for mobile
+        position={isMobile ? [0, -2, -2] : [0, -3.25, -1.5]} // Adjust position for mobile
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -58,7 +68,7 @@ const ComputersCanvas = () => {
   return (
     <Canvas
       frameloop="demand"
-      shadows={!isMobile} // Disable shadows on mobile
+      shadows={!isMobile} // Disable shadows on mobile to avoid WebGL errors
       dpr={[1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
@@ -78,3 +88,5 @@ const ComputersCanvas = () => {
 };
 
 export default ComputersCanvas;
+
+
