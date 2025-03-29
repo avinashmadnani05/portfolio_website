@@ -63,6 +63,9 @@ def get_project_details(project_name: str):
     return "Sorry, I couldn't find details for that project."
 
 # Chat endpoint: process message based on query content
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Chat API!"}    
 @app.post("/chat")
 async def chat(message: ChatMessage):
     await asyncio.sleep(0.5)  # Simulate processing delay
@@ -84,7 +87,7 @@ async def chat(message: ChatMessage):
     return {"response": response_text}
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=8001)
+    uvicorn.run(app )
 
 
 # ... (previous imports)
