@@ -15,8 +15,8 @@ app = FastAPI()
 # Allow cross-origin requests from the frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict this in production
-    allow_credentials=False ,
+    allow_origins=["https://portfolio-websiteavinashmadnani.vercel.app","https://portfolio-websiteavinashmadnani-331fcbj8v.vercel.app","https://portfolio-websiteavinashmadnani.vercel.app"],  # Restrict this in production
+    allow_credentials=True, 
     allow_methods=["*"],
     allow_headers=["*"],
 )
