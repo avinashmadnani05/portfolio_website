@@ -51,7 +51,7 @@ const VoiceChat = () => {
   const sendMessage = async (message) => {
     if (!message.trim()) return;
     try {
-      const res = await fetch("http://localhost:8001/chat", {
+      const res = await fetch(`https://portfolio-website-gwpa.onrender.com/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message }),
