@@ -15,7 +15,7 @@ app = FastAPI()
 # Allow cross-origin requests from the frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://portfolio-websiteavinashmadnani.vercel.app","https://portfolio-websiteavinashmadnani-331fcbj8v.vercel.app","https://portfolio-websiteavinashmadnani.vercel.app"],  # Restrict this in production
+    allow_origins=["https://portfolio-websiteavinashmadnani.vercel.app","https://portfolio-websiteavinashmadnani-331fcbj8v.vercel.app","https://portfolio-websiteavinashmadnani.vercel.app","http://localhost:5173"],  # Restrict this in production
     allow_credentials=True, 
     allow_methods=["*"],
     allow_headers=["*"],
@@ -88,8 +88,8 @@ async def chat(message: ChatMessage):
 
 if __name__ == "__main__":
     import os
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 8001))
+    uvicorn.run(app, port=port)
 
 
 # ... (previous imports)
